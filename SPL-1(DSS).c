@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <conio.h>
 #include<string.h>
+#include <unistd.h>
+
 
 
 void MENU(){
@@ -56,11 +58,17 @@ void MENU(){
 
 
                    case 0:
-                       exit(0);
+                       {
+                            system("clear || cls");
+                           printf("  \n\n\n\n\n\n\n                                                        ****THANK YOU****\n\n\n\n\n\n              ");
+
+                            exit(0);
+                       }
+
 
              }
 
-        printf("\nPress Enter to continue...\n");
+        printf("                                                    \nPress Enter to continue...\n");
         getchar(); // Wait for Enter key
         getchar(); // Clear any remaining newline characters
     }
@@ -68,7 +76,7 @@ void MENU(){
 }
 void displayDefinitions() {
 
-    printf("=>Linear data structure is a data structure in which data elements are arranged sequentially or linearly, where each element is attached to its previous and next adjacent elements, is called a linear data structure. Examples of linear data structures are array, stack, queue, linked list, etc.\n\n");
+    printf("=>Linear data structure is a data structure in which data elements are arranged sequentially or linearly, where each element is attached to its previous and next adjacent elements, is called a linear data structure. Examples of linear data structures are array, stack, queue, linked list, etc.\n\n\n");
     printf("=>Non linear data structures are where data elements are not placed sequentially or linearly are called non-linear data structures. In a non-linear data structure, we can’t traverse all the elements in a single run only. Examples of non-linear data structures are trees and graphs.\n\n\n");
 
 }
@@ -81,7 +89,7 @@ int stack[10];
 int top=-1;
 void push(int x){
     if(top==9){
-        printf("Stack overflow");
+        printf("Can not pop any item cause the stack is currently empty.");
         return;
     }
     else{
@@ -91,7 +99,7 @@ void push(int x){
 }
 void pop(){
     if(top==-1){
-        printf("Stack underflow.");
+        printf("Stack is empty.");
         return;
     }
     else{
@@ -106,16 +114,22 @@ void displayStack(){
 
     }
     else{
-        printf("Currently the stack looks like this:\n");
+        printf("Currently the stack looks like this:\n\n");
     for(int i=top;i>=0;i--){
+            if(i==top)  {
+                    printf("         TOP--> |%d |\n",stack[i]);
+
+            }
+    else
         printf("                |%d |\n",stack[i]);
+
 
     }
     }
 }
 void simulateStack() {
      printf("Stack is a linear data structure that follows a particular order in which the operations are performed. The order may be LIFO(Last In First Out) or FILO(First In Last Out). LIFO implies that the element that is inserted last, comes out first and FILO implies that the element that is inserted first, comes out last.\n");
-     printf("\nWe can do certain operations on an array ,such as push(insertion) and pop(deletion).Do you want to simulate the array operations?\n (yes(1)/no(2)\n ");
+     printf("\nWe can do certain operations on an array ,such as push(insertion) and pop(deletion).Do you want to simulate the satck operations?\n (yes(1)/no(2)\n ");
      int choice;
      int choice2;
      int n;
@@ -178,7 +192,15 @@ void simulateStack() {
                                 }
                             }
                             else if(choice2==3)
+                            {
+
+                                while(top!=-1){
+                                top--;
+                                    }
+                                    system("clear || cls");
                                 MENU();
+                            }
+
 
                             case 2:
                         exit(0);
@@ -189,12 +211,143 @@ void simulateStack() {
 
 }
 
+int queue[10];
+int front=-1;
+int rear=-1;
+
+void enqueue(int x){
+    if(rear==9){
+        printf("queue overflow.");
+    }
+    else if(front==-1 && rear==-1){
+        front=rear=0;
+        queue[rear]=x;
+    }
+    else{
+        rear++;
+        queue[rear]=x;
+    }
+}
+
+void dequeue(){
+    if(front==-1 && rear==-1){
+        printf("The queue is empty.\n");
+    }
+    else if(front==rear){
+         front=rear=-1;
+         printf("The dequeued element is %d\n",queue[front]);
+    }
+    else{
+        printf("The dequeued item is: %d\n",queue[front]);
+        front++;
+        //rear ++;
+    }
+}
+void displayQueue(){
+    if(front==-1 && rear==-1){
+        printf("The queue is empty.");
+    }
+    else{
+        printf("The current state of the queue is : ");
+        for(int i=front;i<=rear;i++){
+                if(i==front) printf("Front--> %d  ",queue[i]);
+                    else if(i==rear) printf("%d <--Rear",queue[i]);
+                        else
+                            printf("%d  ",queue[i]);
+        }
+    }
+}
+
 void simulateQueue() {
-     printf("A Queue is defined as a linear data structure that is open at both ends and the operations are performed in First In First Out (FIFO) order.\n");
+     printf("A Queue is defined as a linear data structure that is open at both ends and the operations are performed in First In First Out (FIFO) order.\n\n\n");
+      printf("\nWe can do certain operations on queue ,such as enqueue(insertion) and dequeue(deletion).Do you want to simulate the queue operations?\n (yes(1)/no(2)\n ");
+      int choice;
+     int choice2;
+     int n;
+     scanf("%d", &choice);
+     system("clear || cls");
+     while(1){
+                switch (choice) {
+                    case 1:
+
+
+                        printf("The queue is currently empty with zero elements.\n\n");
+                        displayQueue();
+
+                        label:
+                        printf("What do you want to simulate?\n");
+                        printf("1.Enqueue.\n2.Dequeue.\nPRESS 3 for MENU\n");
+                        scanf("%d",&choice2);
+                        if(choice2==1){
+                            {
+                                int x;
+                                int c;
+                                for(int i=0;i<10;i++){
+
+                                    printf("Enter an element to enqueue: ");
+                                    scanf("%d",&x);
+
+                                enqueue(x);
+                                displayQueue();
+                                again:
+                                printf("\nContinue?(1) or No(0)?\n");
+                                scanf("%d",&c);
+                                if(c==0){
+                                        goto label;
+                                    break;
+                                }
+                                else if(c==1) continue;
+                                else {
+                                    printf("Wrong command!\n");
+                                    goto again;
+                                }
+                                }
+                            }
+                        }
+                        else if(choice2==2){
+                            int c;
+
+                                for(int i=0;i<10;i++){
+                                    printf("Press enter to dequeue: ");
+                                    getchar();
+                                    getchar();
+                                dequeue();
+                                displayQueue();
+                                printf("\nContinue?(1) or No(0)?\n");
+                                scanf("%d",&c);
+                                if(c==0){
+                                        goto label;
+                                    break;
+                                }
+                                else continue;
+                                }
+                            }
+                            else if(choice2==3)
+                            {
+
+
+                                    system("clear || cls");
+                                MENU();
+                            }
+
+
+                            case 2:
+                        exit(0);
+                        }
+                        break;
+                        }
 }
 
 void simulateLinkedList() {
-     printf("A linked list is a linear data structure, in which the elements are not stored at contiguous memory locations. The elements in a linked list are linked using pointers as shown in the below image:\n");
+     printf("A linked list is a linear data structure, in which the elements are not stored at contiguous memory locations. The elements in a linked list are linked using pointers :\n");
+     printf("Linked lists are made of several nodes,Each node contains two parts. The first part stores the data and the second part stores the pointer to the next node.The first node is called the head.The list start from the head.\nThe nodes look kinda like this:\n\n");
+     printf("                               ______ ______       ______ ______       ______ ______\n");
+     printf("                     Head---> | Data | Next | --->| Data | Next | --->| Data | Next | --->NULL\n");
+     printf("                               ------ ------       ------ ------       ------ ------\n");
+     printf("                                      ^                   ^                   ^\n");
+     printf("                                      |                   |                   |\n");
+     printf("                                      |                   |                   |\n");
+     printf("                                    Node                 Node               Node\n");
 }
 
 void simulateTree() {
@@ -206,10 +359,19 @@ void simulateGraph() {
 
 int main() {
 
+/*for (int i = 0; i <= 100; i+=1) {
+        system("cls");
+        printf("                                             Loading %d%\n", i);
 
+        usleep(5000);
+    }
 
-
-    printf("                                    Welcome to Data Structure Simulator (DSA)\n");
+    system("clear || cls");*/
+;
+    printf("                                             __________________________\n");
+    printf("                                             |Data Structure Simulator|\n");
+    printf("                                             |          (DSA)         |\n");
+    printf("                                             **************************\n\n\n");
     printf("                                             Press Enter to continue...\n\n");
     getchar(); // Wait for Enter key
 
@@ -218,69 +380,10 @@ int main() {
     printf("There are two types of data structures.These are - 1.Linear data structures & 2.Non-linear data structures.\n\n\n");
     displayDefinitions();
     printf("Press Enter to continue...\n");
-    getchar(); // Wait for Enter key
+    getchar();
     system("clear || cls");
-        //system("clear || cls"); // Clear the screen
+
         MENU();
-
-
-/*
-        printf("                                                  Data Structures\n");
-        printf("                                                         |\n");
-        printf("                                                         |\n");
-        printf("                                                         |\n");
-        printf("                                                         |\n");
-        printf("                                      ----------------------------------------\n");
-        printf("                                      |                                      |\n");
-        printf("                                      |                                      |\n");
-        printf("                                      |                                      |\n");
-        printf("                            Linear Data Structures               Non-Linear Data Structures\n");
-        printf("                                      |                                      |\n");
-        printf("                                      |                                      |\n");
-        printf("                  -------------------------------------              -----------------\n ");
-        printf("                 |            |            |         |              |                |\n");
-        printf("               1.Array    2.Stack       3.Queue  4.Linked List    5.Tree          6.Graph\n");
-        printf("         \n \n                                      ");
-
-
-                while (1) {
-
-                printf("\nEnter the corresponding number of the data structure you want to know about(0 for exit): ");
-                scanf("%d", &choice);
-                switch (choice) {
-                    case 1:
-                        simulateArray();
-                        break;
-                    case 2:
-                        simulateStack();
-                        break;
-                    case 3:
-                        simulateQueue();
-                        break;
-                    case 4:
-                        simulateLinkedList();
-                        break;
-                    case 5:
-                        simulateTree();
-                        break;
-                    case 6:
-                        simulateGraph();
-                        break;
-                    default:
-                        printf("Invalid choice.\n");
-
-                   break;
-
-
-                   case 0:
-                       exit(0);
-
-             }
-
-        printf("\nPress Enter to continue...\n");
-        getchar(); // Wait for Enter key
-        getchar(); // Clear any remaining newline characters
-    }*/
 
     return 0;
 }
