@@ -1,9 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
+//#include <conio.h>
 #include<string.h>
 #include <unistd.h>
 
+                        void simulateArray();
+                        void simulateStack();
+                        void simulateQueue();
+                        void simulateLinkedList();   
+                         void simulateTree();
+                         void simulateGraph();                                                           
 
 
 void MENU(){
@@ -76,13 +82,97 @@ void MENU(){
 }
 void displayDefinitions() {
 
-    printf("=>Linear data structure is a data structure in which data elements are arranged sequentially or linearly, where each element is attached to its previous and next adjacent elements, is called a linear data structure. Examples of linear data structures are array, stack, queue, linked list, etc.\n\n\n");
-    printf("=>Non linear data structures are where data elements are not placed sequentially or linearly are called non-linear data structures. In a non-linear data structure, we can’t traverse all the elements in a single run only. Examples of non-linear data structures are trees and graphs.\n\n\n");
+    printf("=> Linear data structure is a data structure in which data elements are arranged sequentially or linearly, where each element is attached to its previous and next adjacent elements, is called a linear data structure. Examples of linear data structures are array, stack, queue, linked list, etc.\n\n\n");
+    printf("=> Non linear data structures are where data elements are not placed sequentially or linearly are called non-linear data structures. In a non-linear data structure, we canï¿½t traverse all the elements in a single run only. Examples of non-linear data structures are trees and graphs.\n\n\n");
 
 }
 
 void simulateArray() {
     printf("An array is a collection of items stored at contiguous memory locations. The idea is to store multiple items of the same type together. This makes it easier to calculate the position of each element by simply adding an offset to a base value, i.e., the memory location of the first element of the array (generally denoted by the name of the array).\n");
+    int n,i,j,m,k;
+    int choice;
+    printf("Enter the size of the array: ");
+    scanf("%d",&n);
+    m=2*n;
+    int array[n];
+    printf("this is how the array looks like: \n\n");
+    printf("index ---->  ");
+    for(i=0;i<n;i++){
+    if (i==0) printf("\t  %d    ",i);
+    else printf("%d    ",i);
+    }
+    printf("\n");
+
+   for(i=0;i<n;i++){
+   		if(i==0) printf("\t         ____");
+   	               else    printf(" ____");
+   }
+   printf("\n");
+   //  printf("              /\\n");
+    // printf("              ||\n");
+     //printf("              ||\n");
+     //printf("           elements\n");
+         printf("elements --->");
+    for(i=0;i<n;i++){
+    		if(i==0) printf("\t|____|");
+    		else printf("____|");
+    		 
+    	}
+    	printf("\n\n");
+	
+	
+    	for(i=0;i<n;i++){
+    	    	printf("Enter the element %d of the array: ",i+1);
+    		scanf("%d",&array[i]);
+    		printf("After iteration %d the array looks like:\n",i+1);
+    		//for(int l=0;l<n;l++){
+		  //                printf(" ____");
+	        //}
+	        printf("\n");
+    		 if(i==0)        printf("| %d  |",array[i]);
+    		else {
+    			for(j=0;j<i;j++) {
+    			if(j==0) printf("| %d  |",array[j]);
+    			     else printf(" %d  |",array[j]);
+    			}
+    			          printf(" %d  |",array[i]);
+    		}
+    		for(k=i+1;k<n;k++){
+    			           printf("    |");
+    		}    
+    		printf("\n");
+    		//for(int l=0;l<n;l++){
+		  //                printf(" ----");
+	        //}
+	        
+	        printf("\n");
+	        
+	        if(i!=n-1){
+    		tryAgain:
+    		printf("continue(1) or MENU(0)\n");
+    		scanf("%d",&choice);
+    		
+    		if(choice==0){
+    		for(i=0;i<n;i++){
+    			array[i]=-1;
+    		}
+    		     system("clear || cls");
+    		     MENU();
+    		}
+    		else if(choice==1) continue;
+    		else {
+    		
+    		printf("Invalid choice,try again.\n");
+    		goto tryAgain;
+    		}
+    		}
+    		else {
+    			printf("Array is full\n");
+    			break;
+    		}
+    	}
+    	printf("\n");
+    MENU();
 }
 
 int stack[10];
@@ -248,10 +338,10 @@ void displayQueue(){
         printf("The queue is empty.");
     }
     else{
-        printf("The current state of the queue is : ");
+        printf("The current state of the queue is : \n\n");
         for(int i=front;i<=rear;i++){
-                if(i==front) printf("Front--> %d  ",queue[i]);
-                    else if(i==rear) printf("%d <--Rear",queue[i]);
+                if(i==front) printf("                      Front--> %d  ",queue[i]);
+                    else if(i==rear) printf("              %d <--Rear",queue[i]);
                         else
                             printf("%d  ",queue[i]);
         }
@@ -359,14 +449,14 @@ void simulateGraph() {
 
 int main() {
 
-/*for (int i = 0; i <= 100; i+=1) {
+for (int i = 0; i <= 100; i+=1) {
         system("cls");
-        printf("                                             Loading %d%\n", i);
+        printf("                                             Loading %d percent\n", i);
 
-        usleep(5000);
+        usleep(500);
     }
 
-    system("clear || cls");*/
+    system("clear || cls");
 ;
     printf("                                             __________________________\n");
     printf("                                             |Data Structure Simulator|\n");
