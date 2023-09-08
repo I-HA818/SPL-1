@@ -1,22 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include <conio.h>
+#include <conio.h>
 #include<string.h>
 #include <unistd.h>
+#include<windows.h>
+#include<string.h>
 
                         void simulateArray();
                         void simulateStack();
                         void simulateQueue();
-                        void simulateLinkedList();   
+                        void simulateLinkedList();
                          void simulateTree();
-                         void simulateGraph();                                                           
+                         void simulateGraph();
 
 
 void MENU(){
-
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
      int choice;
-
-        printf("                                                  Data Structures\n");
+      SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN );
+        printf("                                                  DATA STRUCTURES\n");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
         printf("                                                         |\n");
         printf("                                                         |\n");
         printf("                                                         |\n");
@@ -25,18 +28,25 @@ void MENU(){
         printf("                                      |                                      |\n");
         printf("                                      |                                      |\n");
         printf("                                      |                                      |\n");
+         SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
         printf("                            Linear Data Structures               Non-Linear Data Structures\n");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
         printf("                                      |                                      |\n");
         printf("                                      |                                      |\n");
         printf("                  -------------------------------------              -----------------\n ");
         printf("                 |            |            |         |              |                |\n");
+         SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
         printf("               1.Array    2.Stack       3.Queue  4.Linked List    5.Tree          6.Graph\n");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
         printf("         \n \n                                      ");
 
 
                 while (1) {
 
-                printf("\nEnter the corresponding number of the data structure you want to know about(0 for exit): ");
+                printf("\nEnter the corresponding number of the data structure you want to know about");
+                SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+                printf(" (0 for exit):");
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
                 scanf("%d", &choice);
                 switch (choice) {
                     case 1:
@@ -66,8 +76,9 @@ void MENU(){
                    case 0:
                        {
                             system("clear || cls");
+                             SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
                            printf("  \n\n\n\n\n\n\n                                                        ****THANK YOU****\n\n\n\n\n\n              ");
-
+                              SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
                             exit(0);
                        }
 
@@ -81,24 +92,70 @@ void MENU(){
 
 }
 void displayDefinitions() {
+HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-    printf("=> Linear data structure is a data structure in which data elements are arranged sequentially or linearly, where each element is attached to its previous and next adjacent elements, is called a linear data structure. Examples of linear data structures are array, stack, queue, linked list, etc.\n\n\n");
-    printf("=> Non linear data structures are where data elements are not placed sequentially or linearly are called non-linear data structures. In a non-linear data structure, we can�t traverse all the elements in a single run only. Examples of non-linear data structures are trees and graphs.\n\n\n");
+    printf("\n\nWhat is a data structure?\n");
+    printf("A data structure is a storage that is used to store and organize data.\nIt is a way of arranging data on a computer so that it can be accessed and updated efficiently..\n");
+    printf("There are two types of data structures.These are \n1.Linear data structures &\n2.Non-linear data structures.\n\n\n");
+
+
+    int blink;
+    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+
+      while (!_kbhit()) { // Continue blinking until a key is pressed
+        if (blink) {
+            printf(" Press enter to continue\r ");
+        } else {
+            printf("                           \r"); // Clear the text
+        }
+
+        blink = !blink; // Toggle the blink state
+        Sleep(400);     // Adjust the duration of each blink (in milliseconds)
+    }
+     SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    getchar();
+    system("clear || cls");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+    printf("=> Linear data structure ");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    printf("is a data structure in which data elements are arranged sequentially or linearly,\nwhere each element is attached to its previous and next adjacent elements, is called a linear data structure. Examples of linear data structures are array, stack, queue, linked list, etc.\n\n\n");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+    printf("=> Non linear data structures");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    printf(" are where data elements are not placed sequentially or linearly are called non-linear data structures.\nIn a non-linear data structure, we can't traverse all the elements in a single run only. Examples of non-linear data structures are trees and graphs.\n\n\n");
 
 }
 
 void simulateArray() {
-    printf("An array is a collection of items stored at contiguous memory locations. The idea is to store multiple items of the same type together. This makes it easier to calculate the position of each element by simply adding an offset to a base value, i.e., the memory location of the first element of the array (generally denoted by the name of the array).\n");
     int n,i,j,m,k;
     int choice;
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    char str[10];
+    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+    tryAgain1:
+    printf("                             1.Read about stack   2.Go to simulation\n\n");
+    read_sim:
+          SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    printf("Type 'read' for 1 or type 'sim' for 2\n");
+    scanf("%s",str);
+    getchar();
+
+   if(!strcmp(str,"sim")){
+
+    system("clear || cls");
+    simArray:
     printf("Enter the size of the array: ");
     scanf("%d",&n);
     m=2*n;
     int array[n];
     printf("this is how the array looks like: \n\n");
+     SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
     printf("index ---->  ");
+     SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE |FOREGROUND_RED );
     for(i=0;i<n;i++){
     if (i==0) printf("\t  %d    ",i);
+
+    else if(i>=10) printf("%d   ",i);
     else printf("%d    ",i);
     }
     printf("\n");
@@ -108,26 +165,23 @@ void simulateArray() {
    	               else    printf(" ____");
    }
    printf("\n");
-   //  printf("              /\\n");
-    // printf("              ||\n");
-     //printf("              ||\n");
-     //printf("           elements\n");
+         SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN );
          printf("elements --->");
+         SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE |FOREGROUND_RED );
+
     for(i=0;i<n;i++){
     		if(i==0) printf("\t|____|");
     		else printf("____|");
-    		 
+
     	}
     	printf("\n\n");
-	
-	
+
+
     	for(i=0;i<n;i++){
     	    	printf("Enter the element %d of the array: ",i+1);
     		scanf("%d",&array[i]);
     		printf("After iteration %d the array looks like:\n",i+1);
-    		//for(int l=0;l<n;l++){
-		  //                printf(" ____");
-	        //}
+
 	        printf("\n");
     		 if(i==0)        printf("| %d  |",array[i]);
     		else {
@@ -139,19 +193,17 @@ void simulateArray() {
     		}
     		for(k=i+1;k<n;k++){
     			           printf("    |");
-    		}    
+    		}
     		printf("\n");
-    		//for(int l=0;l<n;l++){
-		  //                printf(" ----");
-	        //}
-	        
+
+
 	        printf("\n");
-	        
+
 	        if(i!=n-1){
     		tryAgain:
     		printf("continue(1) or MENU(0)\n");
     		scanf("%d",&choice);
-    		
+
     		if(choice==0){
     		for(i=0;i<n;i++){
     			array[i]=-1;
@@ -161,7 +213,7 @@ void simulateArray() {
     		}
     		else if(choice==1) continue;
     		else {
-    		
+
     		printf("Invalid choice,try again.\n");
     		goto tryAgain;
     		}
@@ -173,6 +225,25 @@ void simulateArray() {
     	}
     	printf("\n");
     MENU();
+   }
+   else if(!strcmp(str,"read")){
+        printf("An array is a collection of items stored at contiguous memory locations. The idea is to store multiple items of the same type together. This makes it easier to calculate the position of each element by simply adding an offset to a base value, i.e., the memory location of the first element of the array (generally denoted by the name of the array).\n");
+    printf("\nPress enter to continue.\n");
+    getchar();
+     system("clear || cls");
+    goto simArray;
+
+   }
+    else {
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+        printf("INVALID INPUT!! Please try again\n");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    goto tryAgain1;
+    }
+
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
+
 }
 
 int stack[10];
@@ -199,27 +270,46 @@ void pop(){
     }
 }
 void displayStack(){
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     if(top==-1){
-            printf("            |__|\n");
-
+            printf("            |____|\n");
+    return;
     }
     else{
         printf("Currently the stack looks like this:\n\n");
     for(int i=top;i>=0;i--){
             if(i==top)  {
-                    printf("         TOP--> |%d |\n",stack[i]);
-
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+                    printf("       TOP--->");
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+                    printf("   |%d  |",stack[i]);
+                    printf("\n");
             }
-    else
-        printf("                |%d |\n",stack[i]);
+    else{
+        printf("                 |%d  |\n",stack[i]);
 
 
     }
+
     }
+    }
+   // printf("                 ------\n");
+    printf("\n\n");
 }
 void simulateStack() {
-     printf("Stack is a linear data structure that follows a particular order in which the operations are performed. The order may be LIFO(Last In First Out) or FILO(First In Last Out). LIFO implies that the element that is inserted last, comes out first and FILO implies that the element that is inserted first, comes out last.\n");
-     printf("\nWe can do certain operations on an array ,such as push(insertion) and pop(deletion).Do you want to simulate the satck operations?\n (yes(1)/no(2)\n ");
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    char str[10];
+    tryAgain1:
+    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+    printf("                             1.Read about stack   2.Go to simulation\n\n");
+    read_sim:
+          SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    printf("Type 'read' for 1 or type 'sim' for 2\n");
+    scanf("%s",str);
+    getchar();
+     if(!strcmp(str,"sim")){
+            simStack:
+         printf("\nWe can do certain operations on an array ,such as push(insertion) and pop(deletion).Do you want to simulate the stack operations?\n (yes(1)/no(2)\n ");
      int choice;
      int choice2;
      int n;
@@ -257,7 +347,10 @@ void simulateStack() {
                                 }
                                 else if(c==1) continue;
                                 else {
-                                    printf("Wrong command!\n");
+                                        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+                                        printf("Wrong command!\n");
+                                        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
                                     goto again;
                                 }
                                 }
@@ -293,10 +386,24 @@ void simulateStack() {
 
 
                             case 2:
-                        exit(0);
+                                system("clear || cls");
+                        MENU();
                         }
                         break;
                         }
+     }
+
+    else if(!strcmp(str,"read")){
+             printf("Stack is a linear data structure that follows a particular order in which the operations are performed. The order may be LIFO(Last In First Out) \nor FILO(First In Last Out). LIFO implies that the element that is inserted last, comes out first and FILO implies that the element that is inserted first, comes out last.\n");
+            goto simStack;
+    }
+    else {
+
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+        printf("INVALID INPUT!! Please try again\n");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    goto tryAgain1;
+    }
 
 
 }
@@ -334,21 +441,34 @@ void dequeue(){
     }
 }
 void displayQueue(){
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     if(front==-1 && rear==-1){
         printf("The queue is empty.");
     }
     else{
-        printf("The current state of the queue is : \n\n");
+        printf("The current state of the queue is : \n\n\n");
         for(int i=front;i<=rear;i++){
-                if(i==front) printf("                      Front--> %d  ",queue[i]);
-                    else if(i==rear) printf("              %d <--Rear",queue[i]);
+                if(i==front){
+                         SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+                         printf("        \tFront--> ");
+                         SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN |FOREGROUND_BLUE);
+                    printf(" %d  ",queue[i]);
+                }
+                    else if(i==rear) {
+                       printf(" %d ",queue[i]);
+                    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+                         printf("<--rear");
+                         SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+                    }
                         else
                             printf("%d  ",queue[i]);
         }
+        printf("\n\n");
     }
 }
 
 void simulateQueue() {
+     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
      printf("A Queue is defined as a linear data structure that is open at both ends and the operations are performed in First In First Out (FIFO) order.\n\n\n");
       printf("\nWe can do certain operations on queue ,such as enqueue(insertion) and dequeue(deletion).Do you want to simulate the queue operations?\n (yes(1)/no(2)\n ");
       int choice;
@@ -388,7 +508,9 @@ void simulateQueue() {
                                 }
                                 else if(c==1) continue;
                                 else {
+                                        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
                                     printf("Wrong command!\n");
+                                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
                                     goto again;
                                 }
                                 }
@@ -422,22 +544,63 @@ void simulateQueue() {
 
 
                             case 2:
-                        exit(0);
+                        system( "clear || cls");
+                        MENU();
                         }
                         break;
                         }
 }
 
 void simulateLinkedList() {
-     printf("A linked list is a linear data structure, in which the elements are not stored at contiguous memory locations. The elements in a linked list are linked using pointers :\n");
-     printf("Linked lists are made of several nodes,Each node contains two parts. The first part stores the data and the second part stores the pointer to the next node.The first node is called the head.The list start from the head.\nThe nodes look kinda like this:\n\n");
+    char str [10];
+HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+tryAgain:
+SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+    printf("                             1.Read about Data Structures   2.Go to simulation\n\n");
+    read_sim:
+          SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    printf("Type 'read' for 1 or type 'sim' for 2\n");
+    scanf("%s",str);
+    getchar();
+    if(!strcmp(str,"sim")){
+
+        simLinkedList:
+           SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+            printf("Press 1 for insertion or 2 for deletion: ");
+             SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+    }
+    else if(!strcmp(str,"read")){
+        printf("A linked list is a linear data structure, in which the elements are not stored at contiguous memory locations. \nThe elements in a linked list are linked using pointers :\n");
+     printf("Linked lists are made of several nodes,Each node contains two parts. The first part stores the data and the second part stores the pointer to the next node.The first node is called the head.\nThe list start from the head.\nThe nodes look kinda like this:\n\n");
+
      printf("                               ______ ______       ______ ______       ______ ______\n");
-     printf("                     Head---> | Data | Next | --->| Data | Next | --->| Data | Next | --->NULL\n");
+      SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+     printf("                     Head--->");
+     SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
+     printf(" |Data  |Next | ---> |Data  |Next | ---> |Data  |Next |");
+     SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+     printf(" <---NULL\n");
+     SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
      printf("                               ------ ------       ------ ------       ------ ------\n");
      printf("                                      ^                   ^                   ^\n");
      printf("                                      |                   |                   |\n");
      printf("                                      |                   |                   |\n");
-     printf("                                    Node                 Node               Node\n");
+     SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+     printf("                                    Node                 Node               Node\n\n\n");
+     printf("Enter to continue");
+      SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
+      getchar();
+      system("clear || cls");
+     goto simLinkedList;
+    }
+    else {
+             SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+        printf("INVALID COMMAND!");
+     SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
+        goto tryAgain;
+    }
+
 }
 
 void simulateTree() {
@@ -449,29 +612,58 @@ void simulateGraph() {
 
 int main() {
 
-for (int i = 0; i <= 100; i+=1) {
-        system("cls");
-        printf("                                             Loading %d percent\n", i);
+char str [10];
+HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-        usleep(500);
-    }
 
     system("clear || cls");
 ;
+SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
     printf("                                             __________________________\n");
     printf("                                             |Data Structure Simulator|\n");
     printf("                                             |          (DSA)         |\n");
     printf("                                             **************************\n\n\n");
-    printf("                                             Press Enter to continue...\n\n");
-    getchar(); // Wait for Enter key
 
-    printf("What is a data structure?\n");
-    printf("A data structure is a storage that is used to store and organize data.It is a way of arranging data on a computer so that it can be accessed and updated efficiently..\n");
-    printf("There are two types of data structures.These are - 1.Linear data structures & 2.Non-linear data structures.\n\n\n");
-    displayDefinitions();
-    printf("Press Enter to continue...\n");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+    printf("                                  1.Read about Data Structures \n\t\t\t\t  2.Go to simulation\n\n");
+    read_sim:
+          SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
+printf("\n\n\n");
+   int blink = 1;
+
+    while (!_kbhit()) { // Continue blinking until a key is pressed
+        if (blink) {
+            printf("                                        Type 'read' for 1 or type 'sim' for 2\r   ");
+        } else {
+            printf("                                                                                 \r"); // Clear the text
+        }
+
+        blink = !blink; // Toggle the blink state
+        Sleep(400);     // Adjust the duration of each blink (in milliseconds)
+
+
+    }
+    printf("\n");
+    //printf("Type 'read' for 1 or type 'sim' for 2\n");
+    scanf("%s",str);
     getchar();
     system("clear || cls");
+   if(!strcmp(str,"read")){
+    displayDefinitions();
+   }
+   else if(!strcmp(str,"sim")){
+    MENU();
+   }
+    else {
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+        printf("INVALID INPUT!! Please try again\n");
+        goto read_sim;
+    }
+
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
+
 
         MENU();
 
