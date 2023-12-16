@@ -1372,9 +1372,9 @@ void simulateGraph() {
         for (int j = 0; j < numVertices; ++j) {
             if (adjacencyMatrix[i][j] > 0) {
                 if (isWeighted) {
-                    drawWeightedEdge(vertices[i], vertices[j], adjacencyMatrix[i][j], BLUE);
+                    drawWeightedEdge(vertices[i], vertices[j], adjacencyMatrix[i][j], WHITE);
                 } else {
-                    drawUnweightedEdge(vertices[i], vertices[j], BLUE);
+                    drawUnweightedEdge(vertices[i], vertices[j], WHITE);
                 }
             }
         }
